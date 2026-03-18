@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Registro Evento</title>
+</head>
+<body>
+
+<h2>🎉 Crystal Castles Night</h2>
+
+<form onsubmit="guardarDatos(event)">
+  <input type="text" id="nombre" placeholder="Nombre" required><br><br>
+  <input type="email" id="correo" placeholder="Correo" required><br><br>
+  <input type="password" id="contrasena" placeholder="Contraseña" required><br><br>
+  <button type="submit">Confirmar asistencia</button>
+</form>
+
+<script>
+function guardarDatos(e) {
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombre").value;
+  const correo = document.getElementById("correo").value;
+  const contrasenaUsuario = document.getElementById("contrasena").value;
+
+  const contraseña = "1012";
+
+  const contenido = `
+REGISTRO EVENTO 🎉
+
+Nombre: ${nombre}
+Correo: ${correo}
+Contraseña ingresada: ${contrasenaUsuario}
+
+------------------------------------
+Archivo protegido con contraseña
+Contraseña: ${contraseña}
+
+⚠️ SIMULACIÓN DE PHISHING ⚠️
+
+Acabas de ingresar tus datos en un formulario falso.
+Este ejercicio demuestra lo fácil que es caer.
+
+Recomendaciones:
+- Verifica siempre los enlaces
+- No ingreses datos en sitios sospechosos
+- Revisa el dominio antes de confiar
+`;
+
+  const blob = new Blob([contenido], { type: "application/msword" });
+
+  const enlace = document.createElement("a");
+  enlace.href = URL.createObjectURL(blob);
+  enlace.download = "registro_evento.doc";
+  enlace.click();
+
+  mostrarLeccion();
+}
+
+function mostrarLeccion() {
+  document.body.innerHTML = `
+  <h2>⚠️ Simulación de Phishing</h2>
+  <p>Ingresaste tus datos en un formulario falso.</p>
+
+  <h3>¿Qué debiste notar?</h3>
+  <ul>
+    <li>El sitio no era verificable</li>
+    <li>Se pedían datos personales sin contexto claro</li>
+    <li>No había seguridad real</li>
+  </ul>
+
+  <h3>¿Cómo protegerte?</h3>
+  <ul>
+    <li>No confíes en enlaces desconocidos</li>
+    <li>Verifica siempre la URL</li>
+    <li>No compartas información sensible</li>
+  </ul>
+  `;
+}
+</script>
+
+</body>
+</html>
